@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream All-In Dashboard</title>
+    <meta name="description" content="Dream All-In Dashboard - Hayali Yonetim Paneli">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-brand">
+                <div class="brand-icon">D</div>
+                <div class="brand-text">
+                    <span class="brand-name">Dream</span>
+                    <span class="brand-badge">Dashboard</span>
+                </div>
+                <button class="announcement-bell" id="announcementBell" title="Duyurular">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                    </svg>
+                    <span class="bell-badge" id="bellBadge" style="display:none;">0</span>
+                </button>
+                <button class="header-icon-btn" id="taleplerBtn" title="Taleplerim">📋</button>
+                <button class="header-icon-btn" id="egitimBtn" title="Eğitim Dokümanı">📚</button>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menüyü aç/kapat">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Search -->
+        <div class="sidebar-search">
+            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+            </svg>
+            <input type="text" id="screenSearch" placeholder="Ekran ara..." autocomplete="off">
+            <kbd class="search-shortcut">Ctrl+K</kbd>
+        </div>
+
+        <!-- Screen List -->
+        <nav class="sidebar-nav" id="sidebarNav">
+
+            <!-- İşlemler Section -->
+            <div class="nav-section" id="islemlerSection">
+                <div class="nav-section-title" data-collapsible="true" style="cursor:pointer;user-select:none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                    İşlemler
+                    <svg class="collapse-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto;transition:transform 0.2s;">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="alarm-skala">
+                            <span class="nav-link-text">Skala</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="alarmlar">
+                            <span class="nav-link-text">Alarmlar</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="kronik-seller">
+                            <span class="nav-link-text">Tazmin Kronik Seller</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="kalite-itiraz">
+                            <span class="nav-link-text">Kalite</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="eksik-surem">
+                            <span class="nav-link-text">Eksik Sürem</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Looker Raporları Section -->
+            <div class="nav-section" id="lookerFolderSection">
+                <div class="nav-section-title" data-collapsible="true" style="cursor:pointer;user-select:none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                    </svg>
+                    Looker Raporları
+                    <svg class="collapse-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto;transition:transform 0.2s;">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </div>
+                <ul class="nav-list">
+                    <li class="nav-item nav-folder">
+                        <div class="nav-link nav-folder-title" data-folder="toplama-lookerlari">
+                            <span class="nav-link-text">Toplama Lookerları</span>
+                            <svg class="folder-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto;transition:transform 0.2s;">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </div>
+                        <ul class="nav-sublist" data-folder-list="toplama-lookerlari">
+                            <li class="nav-item">
+                                <div class="nav-link nav-sub" data-screen="seller-kabul">
+                                    <span class="nav-link-text">Seller Bazlı Kabulü Yapılmış Gönderiler</span>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="nav-link nav-sub" data-screen="fm-seller">
+                                    <span class="nav-link-text">FM Operations Seller List</span>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="nav-link nav-sub" data-screen="kargo-termin">
+                                    <span class="nav-link-text">Kargo Termin Durumu</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item nav-folder">
+                        <div class="nav-link nav-folder-title" data-folder="tasima-lookerlari">
+                            <span class="nav-link-text">Taşıma Lookerları</span>
+                            <svg class="folder-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto;transition:transform 0.2s;">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </div>
+                        <ul class="nav-sublist" data-folder-list="tasima-lookerlari">
+                            <li class="nav-item">
+                                <div class="nav-link nav-sub" data-screen="sx-dwh">
+                                    <span class="nav-link-text">SX Toplu Veri Aratma (DWH)</span>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="nav-link nav-sub" data-screen="desi-itiraz">
+                                    <span class="nav-link-text">Desi İtiraz Sonuçları</span>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <div class="nav-link nav-sub" data-screen="tazmin-rapor">
+                                    <span class="nav-link-text">Tazmin Gönderi Raporu (MT Kullanım Raporu)</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Tüm Ekranlar Section -->
+            <div class="nav-section" id="tumEkranlarSection">
+                <div class="nav-section-title" data-collapsible="true" style="cursor:pointer;user-select:none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7" />
+                        <rect x="14" y="3" width="7" height="7" />
+                        <rect x="14" y="14" width="7" height="7" />
+                        <rect x="3" y="14" width="7" height="7" />
+                    </svg>
+                    Tüm Ekranlar
+                    <svg class="collapse-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto;transition:transform 0.2s;">
+                        <polyline points="6 9 12 15 18 9"/>
+                    </svg>
+                </div>
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="lojistik">
+                            <span class="nav-link-text">Lojistik</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="tdesk">
+                            <span class="nav-link-text">Tdesk</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="magaza-toplama">
+                            <span class="nav-link-text">Mağaza Toplama Gönderi Bazlı</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="geri-aranacak">
+                            <span class="nav-link-text">Geri Aranacak Satıcı Bilgisi</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="hinterland">
+                            <span class="nav-link-text">LM Toplama Hinterland Check</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="seller-desi">
+                            <span class="nav-link-text">Seller Desi Şikayetleri from Slack</span>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <div class="nav-link" data-screen="fm-area">
+                            <span class="nav-link-text">FM Operations Area Responsible</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- User Info -->
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">D</div>
+                <div class="user-details">
+                    <span class="user-name">Dream Kullanıcı</span>
+                    <span class="user-role">Temsilci</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <div class="topbar" id="topbar">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round">
+                    <line x1="3" y1="6" x2="21" y2="6" />
+                    <line x1="3" y1="12" x2="21" y2="12" />
+                    <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+            </button>
+            <div class="topbar-title">
+                <span class="topbar-icon" id="topbarIcon"></span>
+                <h2 id="topbarScreenName">Ekran Seçin</h2>
+            </div>
+            <div class="topbar-actions">
+                <button class="topbar-btn" id="themeToggleBtn" title="Aydınlık/Karanlık Mod">
+                    <svg id="themeIconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg id="themeIconMoon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="display:none;">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Screen Container -->
+        <div class="screen-container" id="screenContainer">
+            <!-- Welcome Screen -->
+            <div class="welcome-screen" id="welcomeScreen">
+                <div class="welcome-content">
+                    <div class="welcome-icon">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                            <rect width="80" height="80" rx="20" fill="url(#wGrad)" opacity="0.1" />
+                            <path d="M20 28H60M20 40H60M20 52H44" stroke="url(#wGrad2)" stroke-width="3"
+                                stroke-linecap="round" />
+                            <defs>
+                                <linearGradient id="wGrad" x1="0" y1="0" x2="80" y2="80">
+                                    <stop stop-color="#6366F1" />
+                                    <stop offset="1" stop-color="#8B5CF6" />
+                                </linearGradient>
+                                <linearGradient id="wGrad2" x1="20" y1="28" x2="60" y2="52">
+                                    <stop stop-color="#6366F1" />
+                                    <stop offset="1" stop-color="#8B5CF6" />
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h2>Dream All-In Dashboard</h2>
+                    <p>Sol menüden bir ekran seçerek hayali verileri görüntüleyebilirsiniz</p>
+                    <div class="welcome-shortcuts" style="margin-top:30px;">
+                        <div class="shortcut-item">
+                            <kbd>Ctrl</kbd> + <kbd>K</kbd>
+                            <span>Ekran Ara</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Announcement Modal -->
+    <div class="modal-overlay" id="announcementModal" style="display:none;">
+        <div class="modal-container" style="max-width:560px;">
+            <div class="modal-header">
+                <h3>📢 Duyurular</h3>
+                <button class="modal-close" id="closeAnnouncementModal">&times;</button>
+            </div>
+            <div class="modal-body" id="announcementList">
+                <p style="text-align:center;color:var(--text-muted);padding:30px 0;">Henüz duyuru bulunmamaktadır.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kalite İtiraz Modal -->
+    <div class="modal-overlay" id="kaliteItirazModal" style="display:none;">
+        <div class="modal-container" style="max-width:540px;">
+            <div class="modal-header">
+                <h3>Kalite İtiraz</h3>
+                <button class="modal-close" id="closeKaliteItirazModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label>Tam İsim <span style="color:var(--danger);">*</span></label>
+                    <input type="text" id="kiTamIsim" class="dream-input" placeholder="Ad Soyad">
+                </div>
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label>Kontak ID <span style="color:var(--danger);">*</span></label>
+                    <input type="text" id="kiKontakId" class="dream-input" placeholder="Kontak ID">
+                </div>
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label>Puan <span style="color:var(--danger);">*</span></label>
+                    <input type="text" id="kiPuan" class="dream-input" placeholder="Puan">
+                </div>
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label>Değerlendiren <span style="color:var(--danger);">*</span></label>
+                    <select id="kiDegerlendiren" class="dream-input" style="cursor:pointer;">
+                        <option value="">Seçiniz...</option>
+                        <option value="Ahmet Yılmaz">Ahmet Yılmaz</option>
+                        <option value="Elif Demir">Elif Demir</option>
+                        <option value="Mehmet Kara">Mehmet Kara</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label>İtiraz Sebebi <span style="color:var(--danger);">*</span></label>
+                    <textarea id="kiItirazSebebi" class="dream-textarea" placeholder="İtiraz sebebinizi detaylı açıklayın..." rows="5"></textarea>
+                </div>
+                <span class="dream-warning" id="kiWarning" style="display:none;color:var(--danger);font-size:12px;">Lütfen tüm alanları doldurun.</span>
+            </div>
+            <div class="modal-footer">
+                <button class="modal-btn modal-btn-cancel" id="cancelKaliteItiraz">Vazgeç</button>
+                <button class="modal-btn modal-btn-primary" id="submitKaliteItiraz">İtiraz Et</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>
