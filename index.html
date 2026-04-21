@@ -242,6 +242,13 @@
                 <h2 id="topbarScreenName">Ekran Seçin</h2>
             </div>
             <div class="topbar-actions">
+                <button class="dispo-kitapcik-btn" id="dispoKitapcikBtn" title="Dispo Yardım Kitapçık">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                        <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    </svg>
+                    Dispo Yardım Kitapçık
+                </button>
                 <button class="topbar-btn" id="themeToggleBtn" title="Aydınlık/Karanlık Mod">
                     <svg id="themeIconSun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
                         <circle cx="12" cy="12" r="5"/>
@@ -301,6 +308,29 @@
             </div>
             <div class="modal-body" id="announcementList">
                 <p style="text-align:center;color:var(--text-muted);padding:30px 0;">Henüz duyuru bulunmamaktadır.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dispo Yardım Kitapçık Modal -->
+    <div class="modal-overlay dispo-modal-overlay" id="dispoKitapcikModal" style="display:none;">
+        <div class="modal-container" style="max-width:650px;">
+            <div class="modal-header">
+                <h3>📖 Dispo Yardım Kitapçık</h3>
+                <button class="modal-close" id="closeDispoKitapcikModal">&times;</button>
+            </div>
+            <div class="modal-body" id="dispoKitapcikBody">
+                <div class="dispo-accordion">
+                    <div class="dispo-accordion-header">
+                        <span>ABC</span>
+                        <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                            <polyline points="6 9 12 15 18 9"/>
+                        </svg>
+                    </div>
+                    <div class="dispo-accordion-body">
+                        <div class="dispo-accordion-item">DEF</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

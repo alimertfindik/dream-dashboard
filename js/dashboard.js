@@ -420,6 +420,14 @@
                         </div>
                     </div>
 
+                    <div class="tdesk-talep-basligi-container">
+                        <select class="tdesk-talep-basligi-select" id="tdeskTalepBasligiSelect">
+                            <option value="">Talep Başlığı Seç...</option>
+                            <option value="DEF">X Talebi</option>
+                        </select>
+                        <span class="tdesk-talep-basligi-text" id="tdeskTalepBasligiText" title="Kopyalamak için tıkla"></span>
+                    </div>
+
                     <span class="tdesk-toolbar-title">Tdesk Hayali Ekran</span>
 
                     <div class="tdesk-xdock-search" id="tdeskXdockSearch">
@@ -602,6 +610,8 @@
             const xdockInput = panel.querySelector('#tdeskXdockInput');
             const xdockResults = panel.querySelector('#tdeskXdockResults');
             const toast = panel.querySelector('#tdeskToast');
+            const talepSelect = panel.querySelector('#tdeskTalepBasligiSelect');
+            const talepText = panel.querySelector('#tdeskTalepBasligiText');
 
             function showToast() {
                 toast.classList.add('show');
@@ -703,6 +713,23 @@
             xdockInput.addEventListener('blur', () => {
                 panel.querySelector('#tdeskXdockSearch').classList.remove('focused');
             });
+
+            // Talep Başlığı Seç: selecting a title shows its content text
+            if (talepSelect && talepText) {
+                talepSelect.addEventListener('change', () => {
+                    const val = talepSelect.value;
+                    if (val) {
+                        talepText.textContent = val;
+                        talepText.classList.add('active');
+                    } else {
+                        talepText.textContent = '';
+                        talepText.classList.remove('active');
+                    }
+                });
+                talepText.addEventListener('click', () => {
+                    if (talepText.textContent) copyText(talepText.textContent);
+                });
+            }
         }
 
         // Hinterland Check
@@ -845,6 +872,28 @@
     $('#egitimBtn').addEventListener('click', () => {
         // No action
     });
+
+    // Dispo Yardım Kitapçık Modal
+    const dispoKitapcikBtn = $('#dispoKitapcikBtn');
+    const dispoKitapcikModal = $('#dispoKitapcikModal');
+    const closeDispoKitapcikModal = $('#closeDispoKitapcikModal');
+    if (dispoKitapcikBtn && dispoKitapcikModal) {
+        dispoKitapcikBtn.addEventListener('click', () => {
+            dispoKitapcikModal.style.display = 'flex';
+        });
+        closeDispoKitapcikModal.addEventListener('click', () => {
+            dispoKitapcikModal.style.display = 'none';
+        });
+        dispoKitapcikModal.addEventListener('click', (e) => {
+            if (e.target === dispoKitapcikModal) dispoKitapcikModal.style.display = 'none';
+        });
+        // Accordion toggle
+        dispoKitapcikModal.querySelectorAll('.dispo-accordion-header').forEach(header => {
+            header.addEventListener('click', () => {
+                header.parentElement.classList.toggle('open');
+            });
+        });
+    }
 
     // Kalite İtiraz Modal
     const kaliteItirazModal = $('#kaliteItirazModal');
