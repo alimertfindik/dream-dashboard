@@ -43,7 +43,6 @@
     --transition-slow: 0.3s ease;
 }
 
-/* ==================== LIGHT MODE ==================== */
 body.light-mode {
     --bg-primary: #F3F1EE;
     --bg-secondary: #FFFFFF;
@@ -73,7 +72,6 @@ body {
     display: flex;
 }
 
-/* ==================== SIDEBAR ==================== */
 .sidebar {
     width: var(--sidebar-width);
     min-width: var(--sidebar-width);
@@ -209,7 +207,6 @@ body {
     text-align: center;
 }
 
-/* Sidebar Search */
 .sidebar-search {
     padding: 12px 16px;
     position: relative;
@@ -260,7 +257,6 @@ body {
     pointer-events: none;
 }
 
-/* Navigation */
 .sidebar-nav {
     flex: 1;
     overflow-y: auto;
@@ -354,7 +350,6 @@ body {
     transform: rotate(-90deg);
 }
 
-/* Sidebar Footer */
 .sidebar-footer {
     padding: 12px 16px;
     border-top: 1px solid var(--border-subtle);
@@ -406,7 +401,6 @@ body {
     color: var(--success);
 }
 
-/* ==================== MAIN CONTENT ==================== */
 .main-content {
     flex: 1;
     display: flex;
@@ -415,7 +409,6 @@ body {
     overflow: hidden;
 }
 
-/* Top Bar */
 .topbar {
     height: var(--topbar-height);
     padding: 0 20px;
@@ -480,14 +473,12 @@ body {
     border-color: var(--border-accent);
 }
 
-/* Screen Container */
 .screen-container {
     flex: 1;
     overflow-y: auto;
     padding: 24px;
 }
 
-/* Welcome Screen */
 .welcome-screen {
     display: flex;
     align-items: center;
@@ -542,7 +533,6 @@ kbd {
     color: var(--text-secondary);
 }
 
-/* ==================== SCREEN PANEL ==================== */
 .screen-panel {
     display: none;
     animation: fadeIn 0.3s ease;
@@ -556,7 +546,6 @@ kbd {
     animation: fadeIn 0.3s ease;
 }
 
-/* ==================== WARNING BANNER ==================== */
 .dream-warning-banner {
     display: flex;
     align-items: center;
@@ -576,7 +565,6 @@ kbd {
     color: #FBBF24;
 }
 
-/* ==================== HAYALİ EKRAN (FAKE SCREEN) ==================== */
 .fake-screen {
     width: 100%;
     min-height: calc(100vh - var(--topbar-height) - 48px);
@@ -612,7 +600,6 @@ body.light-mode .fake-screen {
     letter-spacing: 0.5px;
 }
 
-/* Looker folder sublist */
 .nav-folder-title {
     cursor: pointer;
     user-select: none;
@@ -641,7 +628,6 @@ body.light-mode .fake-screen {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* ==================== MOCK COMPONENTS ==================== */
 .mock-header {
     display: flex;
     align-items: center;
@@ -816,7 +802,6 @@ body.light-mode .fake-screen {
     color: #818CF8;
 }
 
-/* ==================== DREAM BUTTONS ==================== */
 .dream-btn {
     display: inline-flex;
     align-items: center;
@@ -873,7 +858,6 @@ body.light-mode .fake-screen {
     background: rgba(99, 102, 241, 0.2);
 }
 
-/* ==================== DREAM TABS ==================== */
 .dream-tabs {
     display: flex;
     gap: 4px;
@@ -915,7 +899,6 @@ body.light-mode .fake-screen {
     display: block;
 }
 
-/* ==================== TDESK TOOLBAR (Tex All-In style) ==================== */
 .tdesk-screen-wrapper {
     display: flex;
     flex-direction: column;
@@ -982,7 +965,6 @@ body.light-mode .tdesk-toolbar {
     margin-right: 12px;
 }
 
-/* Hızlı Metin Dropdown */
 .tdesk-dropdown {
     position: absolute;
     top: 38px;
@@ -1024,7 +1006,6 @@ body.light-mode .tdesk-toolbar {
     padding-left: 22px;
 }
 
-/* XDOCK Search */
 .tdesk-xdock-search {
     display: flex;
     align-items: center;
@@ -1064,7 +1045,6 @@ body.light-mode .tdesk-toolbar {
     color: var(--text-dim);
 }
 
-/* XDOCK Results Dropdown */
 .tdesk-xdock-results {
     position: absolute;
     top: 32px;
@@ -1117,7 +1097,6 @@ body.light-mode .tdesk-toolbar {
     display: block;
 }
 
-/* Tdesk Main Area */
 .tdesk-main-area {
     flex: 1;
     display: flex;
@@ -1130,7 +1109,6 @@ body.light-mode .tdesk-toolbar {
     min-height: unset;
 }
 
-/* Tdesk Toast */
 .tdesk-toast {
     position: fixed;
     bottom: 30px;
@@ -1154,7 +1132,6 @@ body.light-mode .tdesk-toolbar {
     transform: translateX(-50%) translateY(-10px);
 }
 
-/* ==================== FORM ELEMENTS ==================== */
 .dream-input {
     width: 100%;
     padding: 9px 12px;
@@ -1206,7 +1183,6 @@ body.light-mode .tdesk-toolbar {
     letter-spacing: 0.3px;
 }
 
-/* ==================== MODAL ==================== */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -1303,7 +1279,6 @@ body.light-mode .tdesk-toolbar {
     background: var(--accent-light);
 }
 
-/* ==================== TEX ALL-IN COMPONENTS ==================== */
 .tex-screen-header {
     display: flex;
     justify-content: space-between;
@@ -1383,7 +1358,6 @@ body.light-mode .tdesk-toolbar {
     margin-bottom: -1px; /* Overlap border */
 }
 
-/* Base table adjustments for black theme */
 .tex-table {
     width: 100%;
     border-collapse: collapse;
@@ -1437,7 +1411,6 @@ body.light-mode .tdesk-toolbar {
     font-size: 13px;
 }
 
-/* ==================== TEX HINTERLAND FORM COMPONENTS ==================== */
 .tex-dark-bg {
     background: #09090b !important;
     min-height: 100vh;
@@ -1565,7 +1538,6 @@ body.light-mode .tdesk-toolbar {
     color: #f97316;
 }
 
-/* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
     .sidebar {
         position: fixed;
@@ -1597,7 +1569,6 @@ body.light-mode .tdesk-toolbar {
     }
 }
 
-/* ==================== DISPO YARDIM KITAPÇIK ==================== */
 .dispo-kitapcik-btn {
     display: inline-flex;
     align-items: center;
@@ -1669,7 +1640,6 @@ body.light-mode .tdesk-toolbar {
     border-top: 1px solid var(--border-subtle);
 }
 
-/* ==================== FORM SCREEN ==================== */
 .form-ilet-card {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -1728,7 +1698,6 @@ body.light-mode .tdesk-toolbar {
     .form-ilet-grid { grid-template-columns: 1fr; }
 }
 
-/* ==================== TDESK TALEP BAŞLIĞI SEÇ ==================== */
 .tdesk-talep-basligi-container {
     display: inline-flex;
     align-items: center;

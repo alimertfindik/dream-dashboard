@@ -1,9 +1,7 @@
-// ==================== Dream All-In Dashboard ====================
 
 (function () {
     'use strict';
 
-    // ==================== HELPERS ====================
     function randInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
     function randFloat(min, max) { return (Math.random() * (max - min) + min).toFixed(2); }
     function randItem(arr) { return arr[randInt(0, arr.length - 1)]; }
@@ -23,7 +21,6 @@
     const ALARM_TYPES = ['Gecikme', 'Hasar', 'Kayıp', 'Yanlış Teslimat', 'Adres Hatası', 'Müşteri İadesi'];
     const TAZMIN_REASONS = ['Hasar', 'Kayıp Gönderi', 'Geç Teslimat', 'Yanlış Ürün', 'Eksik Ürün'];
 
-    // Warning banner HTML
     function warningBanner() {
         return `<div class="dream-warning-banner">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -34,9 +31,7 @@
         </div>`;
     }
 
-    // ==================== SCREEN REGISTRY ====================
     const screenData = {
-        // İşlemler
         'alarm-skala': { title: 'Skala', icon: '' },
         'alarmlar': { title: 'Alarmlar', icon: '' },
         'kronik-seller': { title: 'Tazmin Kronik Seller', icon: '' },
@@ -44,7 +39,6 @@
         'eksik-surem': { title: 'Eksik Sürem', icon: '' },
         'form': { title: 'Form', icon: '' },
 
-        // Looker Raporları
         'seller-kabul': { title: 'Seller Bazlı Kabulü Yapılmış Gönderiler', icon: '' },
         'fm-seller': { title: 'FM Operations Seller List', icon: '' },
         'kargo-termin': { title: 'Kargo Termin Durumu', icon: '' },
@@ -52,7 +46,6 @@
         'desi-itiraz': { title: 'Desi İtiraz Sonuçları', icon: '' },
         'tazmin-rapor': { title: 'Tazmin Gönderi Raporu (MT Kullanım Raporu)', icon: '' },
 
-        // Tüm Ekranlar
         'lojistik': { title: 'Lojistik', icon: '' },
         'tdesk': { title: 'Tdesk', icon: '' },
         'magaza-toplama': { title: 'Mağaza Toplama Gönderi Bazlı', icon: '' },
@@ -62,13 +55,11 @@
         'fm-area': { title: 'FM Operations Area Responsible', icon: '' },
     };
 
-    // ==================== DOM ====================
     const $ = (sel) => document.querySelector(sel);
     const $$ = (sel) => document.querySelectorAll(sel);
 
     let activeScreen = null;
 
-    // ==================== SCREEN RENDERERS ====================
 
     function renderFakeScreen() {
         return `
@@ -86,9 +77,7 @@
             </div>`;
     }
 
-    // ==================== EKSIK SÜREM ====================
     function renderEksikSurem() {
-        // Generate date entries sorted newest-first
         const today = new Date();
         const entries = [];
         const dayCount = randInt(15, 25);
@@ -138,9 +127,7 @@
             </div>`;
     }
 
-    // ==================== KALİTE ====================
     function renderKaliteItiraz() {
-        // Aylık Ortalama: 10 random temsilci, each adet=10, random ortalama
         const shuffled = [...NAMES].sort(() => Math.random() - 0.5).slice(0, 10);
         let toplamOrtalama = 0;
         const temsilciRows = shuffled.map(name => {
@@ -211,13 +198,11 @@
             </div>`;
     }
 
-    // ==================== ALARMLAR ====================
     function renderAlarmlar() {
         const KONULAR = ['Adres Sorunu', 'Toplama Sorunu', 'Teslimat Gecikmesi', 'Ürün Eksik', 'Hasar Talebi', 'İade Sorunu', 'Toplama Sorunu'];
         const ISLEM_DURUMLARI = ['Beklemede', 'İşleme Alındı', 'Araştırılıyor', 'Yanıt Bekleniyor'];
         const COZUM_DURUMLARI = ['Çözümlendi', 'Tamamlandı', 'Kapatıldı'];
 
-        // Bekleyenler rows
         const alarmBekleyenRows = [];
         for (let i = 0; i < randInt(5, 12); i++) {
             alarmBekleyenRows.push(`<tr>
@@ -233,7 +218,6 @@
             </tr>`);
         }
 
-        // Çözümlenenler rows
         const alarmCozumRows = [];
         for (let i = 0; i < randInt(3, 8); i++) {
             alarmCozumRows.push(`<tr>
@@ -305,12 +289,10 @@
             </div>`;
     }
 
-    // ==================== TAZMİN KRONİK SELLER ====================
     function renderKronikSeller() {
         const KONULAR_KS = ['Hasar', 'Kayıp Gönderi', 'Yanlış Ürün', 'Eksik Ürün'];
         const KAPANIS = ['Açık', 'Kapalı', 'Beklemede'];
 
-        // Bekleyenler
         const ksBekleyenRows = [];
         for (let i = 0; i < randInt(5, 12); i++) {
             ksBekleyenRows.push(`<tr>
@@ -326,7 +308,6 @@
             </tr>`);
         }
 
-        // Çözümlenenler
         const ksCozumRows = [];
         for (let i = 0; i < randInt(3, 8); i++) {
             ksCozumRows.push(`<tr>
@@ -399,8 +380,6 @@
             </div>`;
     }
 
-    // ==================== TDESK ====================
-    // Generate random XDOCK entries for search (persisted across interactions)
     const XDOCK_ENTRIES = [];
     for (let i = 0; i < 40; i++) {
         XDOCK_ENTRIES.push({ branch_name: randItem(BRANCHES) + ' ' + randItem(['Şube', 'Depo', 'Hub', 'Transfer', 'Merkez']), xdock_id: randItem(XDOCK_IDS) });
@@ -465,7 +444,6 @@
             </div>`;
     }
 
-    // ==================== FORM ====================
     function renderForm() {
         return `
             <div class="screen-content-wrapper">
@@ -543,7 +521,6 @@
             </div>`;
     }
 
-    // ==================== HINTERLAND CHECK ====================
     function renderHinterlandCheck() {
         return `
             <div class="screen-content-wrapper tex-dark-bg">
@@ -606,7 +583,6 @@
             </div>`;
     }
 
-    // ==================== NAVIGATION ====================
     function getScreenHTML(screenId) {
         switch (screenId) {
             case 'eksik-surem': return renderEksikSurem();
@@ -626,49 +602,39 @@
 
         activeScreen = screenId;
 
-        // Update sidebar active state
         $$('.nav-link').forEach(el => el.classList.remove('active'));
         const navLink = $(`.nav-link[data-screen="${screenId}"]`);
         if (navLink) navLink.classList.add('active');
 
-        // Update topbar
         $('#topbarScreenName').textContent = data.title;
         $('#topbarIcon').textContent = data.icon;
 
-        // Hide welcome, show screen content
         const container = $('#screenContainer');
         const welcome = $('#welcomeScreen');
         if (welcome) welcome.style.display = 'none';
 
-        // Remove existing screen panel
         const existing = container.querySelector('.screen-panel');
         if (existing) existing.remove();
 
-        // Create new panel
         const panel = document.createElement('div');
         panel.className = 'screen-panel active';
         panel.innerHTML = getScreenHTML(screenId);
         container.appendChild(panel);
 
-        // Initialize screen-specific behaviors
         initScreenBehaviors(screenId, panel);
 
-        // Close mobile sidebar
         $('#sidebar').classList.remove('open');
     }
 
     function initScreenBehaviors(screenId, panel) {
-        // Tab switching for any screen with tabs
         const tabContainers = panel.querySelectorAll('.dream-tabs, .tex-tabs');
         tabContainers.forEach(tabContainer => {
             const tabs = tabContainer.querySelectorAll('.dream-tab, .tex-tab');
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
                     const tabId = tab.dataset.tab;
-                    // Deactivate siblings
                     tabs.forEach(t => t.classList.remove('active'));
                     tab.classList.add('active');
-                    // Show content
                     const allContents = panel.querySelectorAll('.dream-tab-content');
                     allContents.forEach(c => c.classList.remove('active'));
                     const target = panel.querySelector(`#tab-${tabId}`);
@@ -677,7 +643,6 @@
             });
         });
 
-        // Kalite İtiraz button
         if (screenId === 'kalite-itiraz') {
             const itirazBtn = panel.querySelector('#kaliteItirazBtn');
             if (itirazBtn) {
@@ -688,7 +653,6 @@
             }
         }
 
-        // Tdesk: Toolbar-based interactions (like Tex All-In popup-wrapper)
         if (screenId === 'tdesk') {
             const toolbar = panel.querySelector('#tdeskToolbar');
             const hizliBtn = panel.querySelector('#tdeskHizliMetinBtn');
@@ -708,7 +672,6 @@
                 navigator.clipboard.writeText(text).then(() => {
                     showToast();
                 }).catch(() => {
-                    // Fallback
                     const ta = document.createElement('textarea');
                     ta.value = text;
                     ta.style.position = 'fixed';
@@ -721,14 +684,12 @@
                 });
             }
 
-            // Hızlı Metin dropdown toggle
             let dropdownOpen = false;
             hizliBtn.addEventListener('click', () => {
                 dropdownOpen = !dropdownOpen;
                 dropdown.classList.toggle('active', dropdownOpen);
             });
 
-            // Hızlı Metin item click → copy text
             dropdown.querySelectorAll('.tdesk-dropdown-item').forEach(item => {
                 item.addEventListener('click', () => {
                     const metin = item.dataset.metin.replace(/\\n/g, '\n');
@@ -738,7 +699,6 @@
                 });
             });
 
-            // Close dropdown on outside click
             document.addEventListener('mousedown', function tdeskOutsideClick(e) {
                 if (!e.target.closest('#tdeskDropdown') && !e.target.closest('#tdeskHizliMetinBtn')) {
                     dropdown.classList.remove('active');
@@ -749,7 +709,6 @@
                 }
             });
 
-            // XDOCK search with autocomplete
             xdockInput.addEventListener('input', () => {
                 const term = xdockInput.value.toLowerCase().trim();
                 if (!term) {
@@ -757,7 +716,6 @@
                     return;
                 }
 
-                // Filter + deduplicate
                 const uniqueMatches = [];
                 const seenNames = new Set();
                 for (const entry of XDOCK_ENTRIES) {
@@ -792,7 +750,6 @@
                 }
             });
 
-            // Focus highlight
             xdockInput.addEventListener('focus', () => {
                 panel.querySelector('#tdeskXdockSearch').classList.add('focused');
             });
@@ -800,12 +757,10 @@
                 panel.querySelector('#tdeskXdockSearch').classList.remove('focused');
             });
 
-            // KA Sorgula: numeric-only; "123" → "Büyük Satıcı"
             const kaInput = panel.querySelector('#tdeskKaInput');
             const kaResults = panel.querySelector('#tdeskKaResults');
             if (kaInput && kaResults) {
                 kaInput.addEventListener('input', () => {
-                    // Strip non-numeric chars
                     kaInput.value = kaInput.value.replace(/[^0-9]/g, '');
                     const term = kaInput.value.trim();
                     if (!term) {
@@ -829,7 +784,6 @@
                         kaResults.classList.add('active');
                     }
                 });
-                // Close on outside click (reuse existing listener also covers this via .tdesk-ka-search check below)
                 document.addEventListener('mousedown', function kaOutsideClick(e) {
                     if (!e.target.closest('#tdeskKaSearch')) {
                         kaResults.classList.remove('active');
@@ -837,7 +791,6 @@
                 });
             }
 
-            // Talep Başlığı Seç: selecting a title shows its content text
             if (talepSelect && talepText) {
                 talepSelect.addEventListener('change', () => {
                     const val = talepSelect.value;
@@ -855,7 +808,6 @@
             }
         }
 
-        // Hinterland Check
         if (screenId === 'hinterland') {
             const queryBtn = panel.querySelector('#hinterlandQueryBtn');
             const resultBox = panel.querySelector('#hinterlandResult');
@@ -873,15 +825,12 @@
         }
     }
 
-    // ==================== EVENT LISTENERS ====================
-    // Nav link clicks
     $$('.nav-link[data-screen]').forEach(link => {
         link.addEventListener('click', (e) => {
             showScreen(link.dataset.screen);
         });
     });
 
-    // Looker folder collapse
     $$('.nav-folder-title').forEach(title => {
         title.addEventListener('click', () => {
             const folderId = title.dataset.folder;
@@ -892,7 +841,6 @@
         });
     });
 
-    // Collapsible sections
     $$('.nav-section-title[data-collapsible]').forEach(title => {
         title.addEventListener('click', () => {
             title.classList.toggle('collapsed');
@@ -903,7 +851,6 @@
         });
     });
 
-    // Search
     const searchInput = $('#screenSearch');
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase().trim();
@@ -938,7 +885,6 @@
         }
     });
 
-    // Ctrl+K shortcut
     document.addEventListener('keydown', (e) => {
         if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
             e.preventDefault();
@@ -947,17 +893,14 @@
         }
     });
 
-    // Sidebar toggle
     $('#sidebarToggle').addEventListener('click', () => {
         $('#sidebar').classList.toggle('collapsed');
     });
 
-    // Mobile menu
     $('#mobileMenuBtn').addEventListener('click', () => {
         $('#sidebar').classList.toggle('open');
     });
 
-    // Theme toggle
     const themeBtn = $('#themeToggleBtn');
     let isLight = localStorage.getItem('dream-theme') === 'light';
     if (isLight) {
@@ -973,7 +916,6 @@
         localStorage.setItem('dream-theme', isLight ? 'light' : 'dark');
     });
 
-    // Announcement modal
     const announcementBell = $('#announcementBell');
     const announcementModal = $('#announcementModal');
     const closeAnnouncementModal = $('#closeAnnouncementModal');
@@ -988,15 +930,11 @@
         if (e.target === announcementModal) announcementModal.style.display = 'none';
     });
 
-    // Header buttons - do nothing on click
     $('#taleplerBtn').addEventListener('click', () => {
-        // No action
     });
     $('#egitimBtn').addEventListener('click', () => {
-        // No action
     });
 
-    // Dispo Yardım Kitapçık Modal
     const dispoKitapcikBtn = $('#dispoKitapcikBtn');
     const dispoKitapcikModal = $('#dispoKitapcikModal');
     const closeDispoKitapcikModal = $('#closeDispoKitapcikModal');
@@ -1010,7 +948,6 @@
         dispoKitapcikModal.addEventListener('click', (e) => {
             if (e.target === dispoKitapcikModal) dispoKitapcikModal.style.display = 'none';
         });
-        // Accordion toggle
         dispoKitapcikModal.querySelectorAll('.dispo-accordion-header').forEach(header => {
             header.addEventListener('click', () => {
                 header.parentElement.classList.toggle('open');
@@ -1018,7 +955,6 @@
         });
     }
 
-    // Kalite İtiraz Modal
     const kaliteItirazModal = $('#kaliteItirazModal');
     const closeKaliteItirazModal = $('#closeKaliteItirazModal');
     const cancelKaliteItiraz = $('#cancelKaliteItiraz');
@@ -1026,7 +962,6 @@
 
     function closeKIModal() {
         kaliteItirazModal.style.display = 'none';
-        // Reset form
         ['kiTamIsim', 'kiKontakId', 'kiPuan', 'kiItirazSebebi'].forEach(id => {
             const el = $(`#${id}`);
             if (el) el.value = '';
@@ -1059,7 +994,6 @@
                 return;
             }
             if (warning) warning.style.display = 'none';
-            // Just close - this is a dream dashboard
             closeKIModal();
         });
     }
