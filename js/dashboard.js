@@ -42,6 +42,7 @@
         'kronik-seller': { title: 'Tazmin Kronik Seller', icon: '' },
         'kalite-itiraz': { title: 'Kalite', icon: '' },
         'eksik-surem': { title: 'Eksik Sürem', icon: '' },
+        'form': { title: 'Form', icon: '' },
 
         // Looker Raporları
         'seller-kabul': { title: 'Seller Bazlı Kabulü Yapılmış Gönderiler', icon: '' },
@@ -430,6 +431,12 @@
 
                     <span class="tdesk-toolbar-title">Tdesk Hayali Ekran</span>
 
+                    <div class="tdesk-xdock-search tdesk-ka-search" id="tdeskKaSearch">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                        <input type="text" id="tdeskKaInput" placeholder="KA Sorgula" autocomplete="off" inputmode="numeric">
+                        <div class="tdesk-xdock-results" id="tdeskKaResults"></div>
+                    </div>
+
                     <div class="tdesk-xdock-search" id="tdeskXdockSearch">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
                         <input type="text" id="tdeskXdockInput" placeholder="Şube veya XDOCK..." autocomplete="off">
@@ -455,6 +462,84 @@
 
                 <!-- Toast notification -->
                 <div class="tdesk-toast" id="tdeskToast">Metin kopyalandı!</div>
+            </div>`;
+    }
+
+    // ==================== FORM ====================
+    function renderForm() {
+        return `
+            <div class="screen-content-wrapper">
+                ${warningBanner()}
+                <div class="mock-header">
+                    <h3>Form</h3>
+                </div>
+                <div class="dream-tabs" id="formTabs">
+                    <button class="dream-tab active" data-tab="form-ilet">Form İlet</button>
+                    <button class="dream-tab" data-tab="iletilen-formlar">İletilen Formlar</button>
+                </div>
+                <div class="dream-tab-content active" id="tab-form-ilet">
+                    <div class="form-ilet-card">
+                        <div class="form-ilet-grid">
+                            <div class="form-group">
+                                <label>Satıcı</label>
+                                <input type="text" class="dream-input" placeholder="Satıcı">
+                            </div>
+                            <div class="form-group">
+                                <label>Hatalı Gönderi Kodu</label>
+                                <input type="text" class="dream-input" placeholder="Hatalı Gönderi Kodu">
+                            </div>
+                            <div class="form-group">
+                                <label>En</label>
+                                <input type="text" class="dream-input" placeholder="En">
+                            </div>
+                            <div class="form-group">
+                                <label>Boy</label>
+                                <input type="text" class="dream-input" placeholder="Boy">
+                            </div>
+                            <div class="form-group">
+                                <label>Yükseklik</label>
+                                <input type="text" class="dream-input" placeholder="Yükseklik">
+                            </div>
+                            <div class="form-group">
+                                <label>Hatalı Gönderi Kodu 2</label>
+                                <input type="text" class="dream-input" placeholder="Hatalı Gönderi Kodu 2">
+                            </div>
+                            <div class="form-group">
+                                <label>En</label>
+                                <input type="text" class="dream-input" placeholder="En">
+                            </div>
+                            <div class="form-group">
+                                <label>Boy</label>
+                                <input type="text" class="dream-input" placeholder="Boy">
+                            </div>
+                            <div class="form-group">
+                                <label>Yükseklik</label>
+                                <input type="text" class="dream-input" placeholder="Yükseklik">
+                            </div>
+                            <div class="form-group form-group-full">
+                                <label>Sorun Detayı</label>
+                                <textarea class="dream-textarea" placeholder="Sorun Detayı" rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-ilet-footer">
+                            <button class="form-ilet-btn" disabled title="Bu buton pasif durumdadır">İlet</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="dream-tab-content" id="tab-iletilen-formlar">
+                    <div class="fake-screen" style="min-height:400px;">
+                        <div class="fake-screen-inner">
+                            <div class="fake-screen-icon">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                    <line x1="8" y1="21" x2="16" y2="21"/>
+                                    <line x1="12" y1="17" x2="12" y2="21"/>
+                                </svg>
+                            </div>
+                            <div class="fake-screen-text">Hayali Ekran</div>
+                        </div>
+                    </div>
+                </div>
             </div>`;
     }
 
@@ -529,6 +614,7 @@
             case 'alarmlar': return renderAlarmlar();
             case 'kronik-seller': return renderKronikSeller();
             case 'tdesk': return renderTdesk();
+            case 'form': return renderForm();
             case 'hinterland': return renderHinterlandCheck();
             default: return renderFakeScreen();
         }
@@ -713,6 +799,43 @@
             xdockInput.addEventListener('blur', () => {
                 panel.querySelector('#tdeskXdockSearch').classList.remove('focused');
             });
+
+            // KA Sorgula: numeric-only; "123" → "Büyük Satıcı"
+            const kaInput = panel.querySelector('#tdeskKaInput');
+            const kaResults = panel.querySelector('#tdeskKaResults');
+            if (kaInput && kaResults) {
+                kaInput.addEventListener('input', () => {
+                    // Strip non-numeric chars
+                    kaInput.value = kaInput.value.replace(/[^0-9]/g, '');
+                    const term = kaInput.value.trim();
+                    if (!term) {
+                        kaResults.classList.remove('active');
+                        return;
+                    }
+                    if (term === '123') {
+                        kaResults.innerHTML = `
+                            <div class="tdesk-xdock-result-item" data-ka="123">
+                                <span class="tdesk-xdock-result-id">123</span>
+                                <span class="tdesk-xdock-result-name">Büyük Satıcı</span>
+                            </div>`;
+                        kaResults.classList.add('active');
+                        kaResults.querySelector('.tdesk-xdock-result-item').addEventListener('click', () => {
+                            copyText('Büyük Satıcı');
+                            kaInput.value = '';
+                            kaResults.classList.remove('active');
+                        });
+                    } else {
+                        kaResults.innerHTML = '<div style="padding:12px; font-size:11px; color:var(--text-dim); text-align:center;">Sonuç bulunamadı</div>';
+                        kaResults.classList.add('active');
+                    }
+                });
+                // Close on outside click (reuse existing listener also covers this via .tdesk-ka-search check below)
+                document.addEventListener('mousedown', function kaOutsideClick(e) {
+                    if (!e.target.closest('#tdeskKaSearch')) {
+                        kaResults.classList.remove('active');
+                    }
+                });
+            }
 
             // Talep Başlığı Seç: selecting a title shows its content text
             if (talepSelect && talepText) {
